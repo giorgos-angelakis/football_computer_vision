@@ -19,42 +19,42 @@ This repository serves as a showcase of production-ready machine learning engine
 
 ## 🧠 System Architecture
 
-                 ┌────────────────────────┐ <br>
-                 │   Broadcast Video      │<br>
-                 └───────────┬────────────┘<br>
-                             │<br>
-               ┌─────────────┴─────────────┐<br>
-               ▼                           ▼<br>
-   ┌───────────────────────┐   ┌───────────────────────┐<br>
-   │ Fine-tuned YOLOv8     │   │ Optical Flow Analysis │<br>
-   │ Object Detection      │   │ (Camera Displacement) │<br>
-   └───────────┬───────────┘   └───────────┬───────────┘<br>
-               │                           │<br>
-               ▼                           │<br>
-   ┌───────────────────────┐               │<br>
-   │ Persistent Tracker    │               │<br>
-   │ (ByteTrack / DeepSORT)│               │<br>
-   └───────────┬───────────┘               │<br>
-               │                           │<br>
-               ▼                           │<br>
-   ┌───────────────────────┐               │<br>
-   │ K-Means Clustering    │               │<br>
-   │ (Team Kit Segmenter)  │               │<br>
-   └───────────┬───────────┘               │<br>
-               │                           │<br>
-               └─────────────┬─────────────┘<br>
-                             │<br>
-                             ▼<br>
-               ┌───────────────────────────┐<br>
-               │ Perspective Homography    │<br>
-               │ Matrix Transformation (H) │<br>
-               └─────────────┬─────────────┘<br>
-                             │<br>
-                             ▼<br>
-               ┌───────────────────────────┐<br>
-               │ Kinematic Metrics Engine  │<br>
-               │ (Speed km/h, Distance m)  │<br>
-               └───────────────────────────┘<br>
+                     ┌────────────────────────┐ 
+                     │   Broadcast Video      │
+                     └───────────┬────────────┘
+                                 │
+               ┌─────────────┴─────────────┐
+               ▼                           ▼
+   ┌───────────────────────┐   ┌───────────────────────┐
+   │ Fine-tuned YOLOv8     │   │ Optical Flow Analysis │
+   │ Object Detection      │   │ (Camera Displacement) │
+   └───────────┬───────────┘   └───────────┬───────────┘
+               │                           │
+               ▼                           │
+   ┌───────────────────────┐               │
+   │ Persistent Tracker    │               │
+   │ (ByteTrack / DeepSORT)│               │
+   └───────────┬───────────┘               │
+               │                           │
+               ▼                           │
+   ┌───────────────────────┐               │
+   │ K-Means Clustering    │               │
+   │ (Team Kit Segmenter)  │               │
+   └───────────┬───────────┘               │
+               │                           │
+               └─────────────┬─────────────┘
+                             │
+                             ▼
+               ┌───────────────────────────┐
+               │ Perspective Homography    │
+               │ Matrix Transformation (H) │
+               └─────────────┬─────────────┘
+                             │
+                             ▼
+               ┌───────────────────────────┐
+               │ Kinematic Metrics Engine  │
+               │ (Speed km/h, Distance m)  │
+               └───────────────────────────┘
 
 1. **Detection & Tracking:** Frames are passed through the fine-tuned YOLOv8 model. Detections are handed off to a tracker to maintain state across the video timeline.
 2. **Feature Extraction:** Bounding box crops are analyzed. Backgrounds are masked out, and the remaining pixel data is clustered via K-Means to identify team colors.
