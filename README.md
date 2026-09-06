@@ -19,34 +19,34 @@ This repository serves as a showcase of production-ready machine learning engine
 
 ## 🧠 System Architecture
 
-                     ┌────────────────────────┐ 
+┌────────────────────────┐
                      │   Broadcast Video      │
                      └───────────┬────────────┘
                                  │
-               ┌─────────────┴─────────────┐
-               ▼                           ▼
-   ┌───────────────────────┐   ┌───────────────────────┐
-   │ Fine-tuned YOLOv8     │   │ Optical Flow Analysis │
-   │ Object Detection      │   │ (Camera Displacement) │
-   └───────────┬───────────┘   └───────────┬───────────┘
-               │                           │
-               ▼                           │
-   ┌───────────────────────┐               │
-   │ Persistent Tracker    │               │
-   │ (ByteTrack / DeepSORT)│               │
-   └───────────┬───────────┘               │
-               │                           │
-               ▼                           │
-   ┌───────────────────────┐               │
-   │ K-Means Clustering    │               │
-   │ (Team Kit Segmenter)  │               │
-   └───────────┬───────────┘               │
-               │                           │
-               └─────────────┬─────────────┘
-                             │
-                             ▼
+               ┌─────────────────┴─────────────────┐
+               ▼                                   ▼
+   ┌───────────────────────┐           ┌───────────────────────┐
+   │  Fine-tuned YOLOv8    │           │ Optical Flow Analysis │
+   │   Object Detection    │           │ (Camera Displacement) │
+   └───────────┬───────────┘           └───────────┬───────────┘
+               │                                   │
+               ▼                                   │
+   ┌───────────────────────┐                       │
+   │  Persistent Tracker   │                       │
+   │ (ByteTrack / DeepSORT)│                       │
+   └───────────┬───────────┘                       │
+               │                                   │
+               ▼                                   │
+   ┌───────────────────────┐                       │
+   │  K-Means Clustering   │                       │
+   │ (Team Kit Segmenter)  │                       │
+   └───────────┬───────────┘                       │
+               │                                   │
+               └─────────────────┬─────────────────┘
+                                 │
+                                 ▼
                ┌───────────────────────────┐
-               │ Perspective Homography    │
+               │  Perspective Homography   │
                │ Matrix Transformation (H) │
                └─────────────┬─────────────┘
                              │
