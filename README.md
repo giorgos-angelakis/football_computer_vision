@@ -33,6 +33,7 @@ This repository serves as a showcase of production-ready machine learning engine
 * **Computer Vision:** OpenCV, Scikit-Learn (K-Means)
 * **Data Processing:** NumPy, Pandas
 * **Environment:** Python 3.x
+* **Model** Pretrained Yolo model available for download [here](https://drive.google.com/file/d/1T7PO-Lr0PDeR69Qe_X97brDM83sFQOhk/view?usp=sharing)
 
 ## 📈 Results & Visuals
 **Team Segmentation**
