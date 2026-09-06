@@ -18,43 +18,15 @@ This repository serves as a showcase of production-ready machine learning engine
 * **Spatial Depth & Real-World Physics:** Applied OpenCV **Perspective Transformation** to map 2D pixel coordinates to a 3D real-world plane, allowing the system to calculate precise physical metrics like total distance covered and current running speed in km/h.
 
 ## 🧠 System Architecture
-
-┌────────────────────────┐
-                     │   Broadcast Video      │
-                     └───────────┬────────────┘
-                                 │
-               ┌─────────────────┴─────────────────┐
-               ▼                                   ▼
-   ┌───────────────────────┐           ┌───────────────────────┐
-   │  Fine-tuned YOLOv8    │           │ Optical Flow Analysis │
-   │   Object Detection    │           │ (Camera Displacement) │
-   └───────────┬───────────┘           └───────────┬───────────┘
-               │                                   │
-               ▼                                   │
-   ┌───────────────────────┐                       │
-   │  Persistent Tracker   │                       │
-   │ (ByteTrack / DeepSORT)│                       │
-   └───────────┬───────────┘                       │
-               │                                   │
-               ▼                                   │
-   ┌───────────────────────┐                       │
-   │  K-Means Clustering   │                       │
-   │ (Team Kit Segmenter)  │                       │
-   └───────────┬───────────┘                       │
-               │                                   │
-               └─────────────────┬─────────────────┘
-                                 │
-                                 ▼
-               ┌───────────────────────────┐
-               │  Perspective Homography   │
-               │ Matrix Transformation (H) │
-               └─────────────┬─────────────┘
-                             │
-                             ▼
-               ┌───────────────────────────┐
-               │ Kinematic Metrics Engine  │
-               │ (Speed km/h, Distance m)  │
-               └───────────────────────────┘
+```mermaid
+graph TD
+    A[Broadcast Video] --> B[Fine-tuned YOLOv8 Object Detection]
+    A --> C[Optical Flow Analysis Camera Displacement]
+    B --> D["Persistent Tracker (ByteTrack / DeepSORT)"]
+    D --> E["K-Means Clustering (Team Kit Segmenter)"]
+    E --> F["Perspective Homography Matrix Transformation (H)"]
+    C --> F
+    F --> G["Kinematic Metrics Engine (Speed km/h, Distance m)"]
 
 1. **Detection & Tracking:** Frames are passed through the fine-tuned YOLOv8 model. Detections are handed off to a tracker to maintain state across the video timeline.
 2. **Feature Extraction:** Bounding box crops are analyzed. Backgrounds are masked out, and the remaining pixel data is clustered via K-Means to identify team colors.
